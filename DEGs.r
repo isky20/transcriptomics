@@ -1,14 +1,15 @@
 # Load required libraries
-library(edgeR)
-library(dplyr)
+library(edgeR)  # For differential expression analysis
+library(dplyr)  # For data manipulation
 
 # Function to get Differentially Expressed Genes (DEGs)
 get_DEG <- function(raw.reads.csv, colname.case, number.case.samples, named.case,
                     colname.control, number.control.samples, named.control, number.logFC, number.FDR) {
+  
   # Load count data
   rawcounts <- read.csv(raw.reads.csv, header = TRUE, row.names = 1)
   
-  # Identify case and control columns
+  # Identify case and control columns based on input parameters
   case_start <- which(colnames(rawcounts) == colname.case)
   case_end <- case_start + number.case.samples - 1
   control_start <- which(colnames(rawcounts) == colname.control)
@@ -24,7 +25,7 @@ get_DEG <- function(raw.reads.csv, colname.case, number.case.samples, named.case
   keep <- rowSums(cpm(dge) > 0) >= ceiling(ncol(counts) / 2)
   dge <- dge[keep, ]
   
-  # Perform normalization
+  # Perform normalization using TMM method
   dge <- calcNormFactors(dge, method = "TMM")
   
   # Generate normalized data and save it
@@ -44,7 +45,7 @@ get_DEG <- function(raw.reads.csv, colname.case, number.case.samples, named.case
   # Estimate dispersion
   dge <- estimateDisp(dge, design)
   
-  # Fit the model and perform differential expression analysis
+  # Fit the model and perform likelihood ratio test for differential expression
   fit <- glmFit(dge, design)
   lrt <- glmLRT(fit)
   
@@ -52,14 +53,14 @@ get_DEG <- function(raw.reads.csv, colname.case, number.case.samples, named.case
   de_genes <- topTags(lrt, n = 99999999)$table
   de_genes_sig <- arrange(de_genes[de_genes$PValue < 0.05, ], logFC)
   
-  # Add regulation information
+  # Add regulation information (up or down in the case group)
   tibble_data <- de_genes_sig %>% mutate(regulation = ifelse(logFC > 0, paste("up in", named.case), paste("down in", named.case)))
   
-  # Convert to data frame and filter based on logFC and FDR
+  # Convert to data frame and filter based on logFC and FDR thresholds
   result <- as.data.frame(tibble_data)
   filtered <- subset(result, abs(logFC) > number.logFC & FDR < number.FDR)
   
-  # Save the filtered DEGs
+  # Save the filtered DEGs to a CSV file
   write.csv(filtered, file = paste(named.case, named.control, "logFC", number.logFC, "FDR", number.FDR, "DEGsNEW.csv", sep = "_"), quote = TRUE, row.names = TRUE)
 }
 
