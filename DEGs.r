@@ -65,4 +65,4 @@ get_DEG <- function(raw.reads.csv, colname.case, number.case.samples, named.case
 }
 
 # Example usage
-get_DEG("02.input_raw_data.csv", "CasC2_L3", 4, "CasC", "CasS2_L3", 4, "CasS", 1.5, 0.01)
+get_DEG("featureCount.csv", "CasC2_L3", 4, "CasC", "CasS2_L3", 4, "CasS", 1.5, 0.01)
