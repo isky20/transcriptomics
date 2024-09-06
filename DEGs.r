@@ -1,6 +1,7 @@
 # Load required libraries
 library(edgeR)  # For differential expression analysis
 library(dplyr)  # For data manipulation
+library(argparse)  # For parsing command-line arguments
 
 # Function to get Differentially Expressed Genes (DEGs)
 get_DEG <- function(raw.reads.csv, colname.case, number.case.samples, named.case,
@@ -64,5 +65,30 @@ get_DEG <- function(raw.reads.csv, colname.case, number.case.samples, named.case
   write.csv(filtered, file = paste(named.case, named.control, "logFC", number.logFC, "FDR", number.FDR, "DEGsNEW.csv", sep = "_"), quote = TRUE, row.names = TRUE)
 }
 
-# Example usage
-get_DEG("featureCount.csv", "CasC2_L3", 4, "CasC", "CasS2_L3", 4, "CasS", 1.5, 0.01)
+# Function to set up argparse and pass arguments
+run_with_args <- function() {
+  parser <- ArgumentParser(description = "Differential Expression Analysis using edgeR")
+  
+  # Add arguments
+  parser$add_argument("--raw.reads.csv", required = TRUE, help = "Path to the raw counts CSV file")
+  parser$add_argument("--colname.case", required = TRUE, help = "Column name for the first case sample")
+  parser$add_argument("--number.case.samples", type = "integer", required = TRUE, help = "Number of case samples")
+  parser$add_argument("--named.case", required = TRUE, help = "Name for the case group")
+  parser$add_argument("--colname.control", required = TRUE, help = "Column name for the first control sample")
+  parser$add_argument("--number.control.samples", type = "integer", required = TRUE, help = "Number of control samples")
+  parser$add_argument("--named.control", required = TRUE, help = "Name for the control group")
+  parser$add_argument("--number.logFC", type = "numeric", required = TRUE, help = "logFC threshold")
+  parser$add_argument("--number.FDR", type = "numeric", required = TRUE, help = "FDR threshold")
+  
+  # Parse the arguments
+  args <- parser$parse_args()
+  
+  # Call the DEG function with parsed arguments
+  get_DEG(args$raw.reads.csv, args$colname.case, args$number.case.samples, args$named.case,
+          args$colname.control, args$number.control.samples, args$named.control,
+          args$number.logFC, args$number.FDR)
+}
+
+# Run the script with arguments
+run_with_args()
+
