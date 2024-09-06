@@ -1,0 +1,4 @@
+# config.yaml
+index_dir: "reference/genome_index"  # STAR index directory
+gtf_file: "reference/annotation.gtf"  # GTF annotation file
+threads: 4  # Number of threads to use for each rule
