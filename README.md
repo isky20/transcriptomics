@@ -37,9 +37,3 @@ Command-Line Arguments:
 - number.logFC: The log fold change threshold.
 - number.FDR: The False Discovery Rate threshold.
 
-
-
-
-
-
-
