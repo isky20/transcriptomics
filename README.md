@@ -11,6 +11,32 @@ Assumptions:
 - Paired-end FASTQs are named with _R1 and _R2 in their filenames.
 - Single-end FASTQs only contain _R1.
 - All FASTQs for different samples are located in the same directory (--fastq-dir).
+## or
+```
+snakemake -s rnaseq_pipeline.smk --cores 8
+```
+- SAMPLES, FASTQ1, FASTQ2: Extracts the sample names and FASTQ paths using glob_wildcards.
+- rule star_align: Runs STAR to align paired-end FASTQ files to the reference genome and produces sorted BAM files and read counts.
+- rule featurecounts: Runs featureCounts to count gene-level features from the aligned BAM files.
+- rule all: This is the top-level rule that specifies the final outputs (all BAM files and gene count files) so Snakemake knows the dependencies.
+
+
+Folder Structure
+
+```
+project_directory/
+├── data/
+│   ├── samplesheet.csv  # Sample sheet with FASTQ file paths
+│   ├── fastq/  # Directory containing FASTQ files
+├── reference/
+│   ├── genome_index/  # STAR index files
+│   ├── annotation.gtf  # GTF annotation file
+├── results/
+│   ├── alignments/  # STAR output
+│   ├── counts/  # featureCounts output
+├── rnaseq_pipeline.smk  # Snakemake workflow
+└── config.yaml  # Configuration file
+```
 
 ## step2: 
 
