@@ -64,4 +64,21 @@ Command-Line Arguments:
 - number.FDR: The False Discovery Rate threshold.
 
 ### deg between two paried-sample conditions:
-
+```
+Rscript deg_pd_analysis.R --count-data-file "data_pd.csv" \
+                          --output-prefix "vehicle_vs_evhd" \
+                          --group-labels "Group1,Group2,Group3,Group4" \
+                          --condition-labels "c1,c2" \
+                          --n-replicates-per-group 2 \
+                          --n-groups 4 \
+                          --ref-condition "c1" \
+                          --target-condition "c2"  
+```
+- count-data-file "data_pTreg.csv": Path to CSV with gene counts (rows: genes, columns: samples).
+- output-prefix "c1_vs_c2": Prefix for output files.
+- group-labels "Group1,Group2,Group3,Group4": Comma-separated list of group labels.
+- condition-labels "c1,c2": Comma-separated list of condition labels.
+- n-replicates-per-group 2: Number of replicates per group.
+- n-groups 4: Number of groups in the dataset.
+- ref-condition "c1": Reference condition for comparison.
+- target-condition "c2": Condition to compare against the reference.
