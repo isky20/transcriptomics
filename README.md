@@ -39,7 +39,7 @@ project_directory/
 ```
 
 ## step2: 
-
+### deg between two conditions:
 ``` 
 Rscript deg_analysis.R --raw.reads.csv "featureCount.csv" \
                        --colname.case "CasC2_L3" \
@@ -62,4 +62,6 @@ Command-Line Arguments:
 - named.control: Name for the control group.
 - number.logFC: The log fold change threshold.
 - number.FDR: The False Discovery Rate threshold.
+
+### deg between two paried-sample conditions:
 
