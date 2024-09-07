@@ -1,4 +1,4 @@
-## step1:
+## fqs_to_featurecounts:
 ```
 python3 rnaseq_pipeline.py --fastq-dir /path/to/fastqs \
                            --index-dir /path/to/star_index \
@@ -38,7 +38,7 @@ project_directory/
 └── config.yaml  # Configuration file
 ```
 
-## step2: 
+## deg: 
 ### deg between two conditions:
 ``` 
 Rscript deg_analysis.R --raw.reads.csv "featureCount.csv" \
@@ -82,3 +82,9 @@ Rscript deg_pd_analysis.R --count-data-file "data_pd.csv" \
 - n-groups 4: Number of groups in the dataset.
 - ref-condition "c1": Reference condition for comparison.
 - target-condition "c2": Condition to compare against the reference.
+
+
+## target miRNA
+```
+Rscript get_mirna_targets.R /path/to/miRNAlist.csv /path/to/output_folder
+```
