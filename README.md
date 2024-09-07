@@ -83,6 +83,12 @@ Rscript deg_pd_analysis.R --count-data-file "data_pd.csv" \
 - ref-condition "c1": Reference condition for comparison.
 - target-condition "c2": Condition to compare against the reference.
 
+## perform enrichment analysis
+```
+Rscript perform_enrichment_analysis.R file_name 3702
+```
+- file_name: The exact name of the CSV file you want to process e.g. perform_enrichment.csv.
+- organism_id: The organism ID used for the enrichment analysis e.g. 3702.
 
 ## target miRNA
 ```
