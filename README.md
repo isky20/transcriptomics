@@ -93,4 +93,6 @@ Rscript perform_enrichment_analysis.R file_name 3702
 ## target miRNA
 ```
 Rscript get_mirna_targets.R /path/to/miRNAlist.csv /path/to/output_folder
+Rscript get_gene_targets.R --input gene_differents.csv --species mmu
+
 ```
