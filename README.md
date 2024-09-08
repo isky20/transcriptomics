@@ -41,7 +41,7 @@ project_directory/
 ## deg: 
 ### deg between two conditions:
 ``` 
-Rscript deg_analysis.R --raw.reads.csv "featureCount.csv" \
+Rscript deg_analysis.R --raw.reads.csv "featureCount_two_cond.csv" \
                        --colname.case "CasC2_L3" \
                        --number.case.samples 4 \
                        --named.case "CasC" \
@@ -65,7 +65,7 @@ Command-Line Arguments:
 
 ### deg between two paried-sample conditions:
 ```
-Rscript deg_pd_analysis.R --count-data-file "data_pd.csv" \
+Rscript deg_pd_analysis.R --count-data-file "featureCount_pd_cond.csv" \
                           --output-prefix "vehicle_vs_evhd" \
                           --group-labels "Group1,Group2,Group3,Group4" \
                           --condition-labels "c1,c2" \
