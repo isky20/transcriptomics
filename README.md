@@ -1,3 +1,22 @@
+
+![data](https://github.com/user-attachments/assets/90d60e75-0998-4fad-bb80-21ec41efdba3)
+
+This workflow combines RNA-seq data analysis, differential gene expression identification, enrichment analysis, and miRNA-target gene prediction to provide comprehensive insights into the molecular mechanisms involved in the study.
+
+- RNA-seq Data Processing: Raw RNA-seq data undergoes quality control (FastQC) and read quantification (featureCounts) to measure gene expression levels.
+
+- Differential Gene Expression (DEG) Analysis: The identified gene expression data is used to detect differentially expressed genes (DEGs) between different experimental conditions using statistical analysis.
+
+- miRNA and Gene Target Prediction: After DEG analysis, miRNA-target prediction is conducted to identify miRNAs that may regulate the expression of the DEGs. This helps in understanding post-transcriptional regulatory mechanisms.
+
+- Gene Ontology (GO) Enrichment Analysis: Enrichment analysis is performed on the DEGs to identify over-represented biological processes, molecular functions, and cellular components, providing context for the functions of the genes identified.
+
+- Topology Analysis: Topological analysis is performed on the network of DEGs (both up-regulated, down-regulated, and all). This step is crucial for identifying key genes (hubs) in the biological network and analyzing the connectivity and influence of these genes in the overall regulatory network. Hubs in these networks are often biologically significant as they may represent genes critical for specific cellular functions or disease mechanisms. Bottleneck nodes may also be identified, which play important roles in connecting different modules or pathways in the network.
+
+
+
+
+
 ## fqs_to_featurecounts:
 ```
 python3 rnaseq_pipeline.py --fastq-dir /path/to/fastqs \
@@ -90,7 +109,7 @@ Rscript perform_enrichment_analysis.R file_name 3702
 - file_name: The exact name of the CSV file you want to process e.g. perform_enrichment.csv.
 - organism_id: The organism ID used for the enrichment analysis e.g. 3702.
 
-## target miRNA
+## target miRNA or gene
 ```
 Rscript get_mirna_targets.R /path/to/miRNAlist.csv /path/to/output_folder
 Rscript get_gene_targets.R --input gene_differents.csv --species mmu
