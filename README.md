@@ -1,5 +1,5 @@
 
-![data](https://github.com/user-attachments/assets/90d60e75-0998-4fad-bb80-21ec41efdba3)
+![Untitled Diagram](https://github.com/user-attachments/assets/ba234cdb-cd74-40de-aedc-8b682aeaed99)
 
 This workflow combines RNA-seq data analysis, differential gene expression identification, enrichment analysis, and miRNA-target gene prediction to provide comprehensive insights into the molecular mechanisms involved in the study.
 
