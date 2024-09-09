@@ -61,12 +61,12 @@ project_directory/
 ### deg between two conditions:
 ``` 
 Rscript deg_analysis.R --raw.reads.csv "featureCount_two_cond.csv" \
-                       --colname.case "CasC2_L3" \
+                       --colname.case "case_a1" \
                        --number.case.samples 4 \
-                       --named.case "CasC" \
-                       --colname.control "CasS2_L3" \
+                       --named.case "case_a" \
+                       --colname.control "case_b1" \
                        --number.control.samples 4 \
-                       --named.control "CasS" \
+                       --named.control "case_b" \
                        --number.logFC 1.5 \
                        --number.FDR 0.01
 ```
